@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Delete</title>
+</head>
+<body>
+<h3>Delete Manufacturer</h3>
+<p>
+    <a th:href="@{/manufacturers}">
+        Back to province list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/manufacturers/delete}" th:object="${manufacturer}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{manufacturerId}"/>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{manufacturerName}"/>
+        </div>
+        <input type="submit" value="Xoa"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

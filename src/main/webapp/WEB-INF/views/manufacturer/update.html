@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Update</title>
+</head>
+<body>
+<h3>Update manufacturer</h3>
+<p>
+    <a th:href="@{/manufacturers}">
+        Back to manufacturer list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/manufacturers/update/{id}((id=${manufacturer.getManufacturerId()}))}" th:object="${manufacturer}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{manufacturerId}"/>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{manufacturerName}"/>
+        </div>
+        <input type="submit" value="Sua"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

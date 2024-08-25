@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<h3>Delete Computers</h3>
+<div id="form">
+    <form th:action="@{/computers/delete}" th:object="${computer}" method="post" novalidate ="novalidate" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{computerId}"/>
+        <br>
+        <div>
+            <label for="code">Code</label>
+            <input type="text" id="code" th:field="*{com}" readonly/>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}" readonly/>
+        </div>
+        <div>
+            <label for="producer">Producer</label>
+            <input type="text" id="producer" th:field="*{producer}" readonly/>
+        </div>
+        <div>
+            <label for="price">Price</label>
+            <input type="text" id="price" th:field="*{price}" readonly/>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" th:field="*{description}" readonly/>
+        </div>
+        <div>
+            <label for="img">img</label>
+            <input type="file" id="img" th:field="*{img}" readonly/>
+        </div>
+        <input type="submit" value="xoa">
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
