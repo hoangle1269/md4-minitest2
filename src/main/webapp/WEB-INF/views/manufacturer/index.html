@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<table id = "computerList">
+<table id = "manufacturerList">
     <thead>
     <tr>
         <th>STT</th>
@@ -32,9 +32,9 @@
     <tbody>
     <tr th:each="m,mStatus : ${manufacturerList}">
         <td th:text="${mStatus.count}"></td>
-        <td><a th:href="@{/manufacturers/view-manufacturer/{id}(id=${p.getId()})}" th:text="${p.getManufacturerName()}"></a></td>
-        <td><a th:href="@{/manufacturers/update/{id}(id=${p.getManufacturerId()})}">update</a></td>
-        <td><a th:href="@{/manufacturers/delete/{id}(id=${p.getManufacturerId()})}">delete</a></td>
+        <td><a th:href="@{/manufacturers/view-manufacturer/{id}(id=${m.getManufacturerId})}" th:text="${m.getManufacturerName()}"></a></td>
+        <td><a th:href="@{/manufacturers/update/{id}(id=${m.getManufacturerId()})}">update</a></td>
+        <td><a th:href="@{/manufacturers/delete/{id}(id=${m.getManufacturerId()})}">delete</a></td>
     </tr>
     </tbody>
 </table>
@@ -47,8 +47,8 @@
     </thead>
     <tbody>
     <tr th:each="m, mStatus : ${count}">
-        <td th:text="${m.getName()}"></td>
-        <td th:text="${m.getNumber()}"></td>
+        <td th:text="${m.getManufacturerName()}"></td>
+        <td th:text="${m.getCount()}"></td>
     </tr>
     </tbody>
 </table>

@@ -14,7 +14,7 @@ public interface IComputerRepository extends JpaRepository<Computer,Long> {
 
     Page<Computer> findAll(Pageable pageable);
 
-    Page<Computer> findAllByNameContaining(Pageable pageable, String name);
+    Page<Computer> findAllByNameContaining(Pageable pageable, String computerName);
 
 //    dinh nghia phuong thuc truy van
 //    tim kiem theo lastName

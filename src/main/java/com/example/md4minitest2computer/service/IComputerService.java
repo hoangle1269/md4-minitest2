@@ -11,5 +11,5 @@ public interface IComputerService extends IGenerateService<Computer>{
 
     Page<Computer> findAll(Pageable pageable);
 
-    Page<Computer> findAllByNameContaining(Pageable pageable, String name);
+    Page<Computer> findAllByNameContaining(Pageable pageable, String computerName);
 }

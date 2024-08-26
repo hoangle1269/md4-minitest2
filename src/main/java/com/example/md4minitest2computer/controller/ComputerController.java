@@ -40,7 +40,7 @@ public class ComputerController {
         Page<Computer> computerPage = computerService.findAll(pageable);
         model.addAttribute("computerList", computerPage);
 
-        return "/car/index";
+        return "/computer/index";
     }
 
 
@@ -86,7 +86,7 @@ public class ComputerController {
 
     @GetMapping("/{computerId}/edit")
     public String showFormEdit(@PathVariable Long computerId, Model model) {
-        model.addAttribute("computer", computerService.findById(computerId));
+        model.addAttribute("computer", computerService.findById(computerId).get());
 //        Iterable<Manufacturer> manufacturers = manufacturerService.findAll();
 //        model.addAttribute("manufacturers", manufacturers);
         return "/computer/edit";
@@ -121,7 +121,7 @@ public class ComputerController {
 
     @GetMapping("/{computerId}/delete")
     public String showFormDelete(@PathVariable Long computerId, Model model) {
-        model.addAttribute("computer", computerService.findById(computerId));
+        model.addAttribute("computer", computerService.findById(computerId).get());
         Iterable<Manufacturer> manufacturers = manufacturerService.findAll();
         model.addAttribute("manufacturers", manufacturers);
         return "/computer/delete";
@@ -141,13 +141,13 @@ public class ComputerController {
 //    }
 //
     @GetMapping("/search")
-    public String search(@RequestParam("name") String name,
+    public String search(@RequestParam("computerName") String computerName,
                          @RequestParam(value = "page", defaultValue = "0") int page,
                          @RequestParam(value = "size", defaultValue = "10") int size,
                          Model model) {
-        Page<Computer> computerList = computerService.findAllByNameContaining(PageRequest.of(page, size),name );
+        Page<Computer> computerList = computerService.findAllByNameContaining(PageRequest.of(page, size), computerName);
         model.addAttribute("computerList", computerList);
-        return "/computer/index";  // Assuming "index" is the name of your Thymeleaf template
+        return "/computer/index";
     }
 }
 

@@ -1,54 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="/layout :: head">
-    <title></title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
+<h3>Add new</h3>
 
-<h3>Edit Car</h3>
+<p><a th:href="@{/computers/create}">Add</a></p>
 
-<div id="form">
-    <form th:action="@{/cars/update}" th:object="${car}" method="post" novalidate="novalidate" enctype="multipart/form-data">
-        <input type="hidden" th:field="*{id}" />
-
-        <div>
-            <label for="code">Code</label>
-            <input type="text" id="code" th:field="*{code}" placeholder="Enter car code" />
-        </div>
-
-        <div>
-            <label for="name">Name</label>
-            <input type="text" id="name" th:field="*{name}" placeholder="Enter car name" />
-        </div>
-
-        <div>
-            <label for="producer">Producer</label>
-            <!--           <input type="text" id="producer" th:field="*{manufacturer}" placeholder="Enter producer name" />-->
-            <select id="producer" th:field="*{manufacturer}">
-                <option th:each="m : ${manufacturers}" th:value="${m.id}" th:text="${m.name}"></option>
-            </select>
-        </div>
-
-        <div>
-            <label for="price">Price</label>
-            <input type="text" id="price" th:field="*{price}" placeholder="Enter price" />
-        </div>
-
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id="description" th:field="*{description}" placeholder="Enter car description" />
-        </div>
-
-        <div>
-            <label for="img">Image</label>
-            <input type="file" id="img" th:field="*{img}" />
-        </div>
-
-        <input type="submit" value="sua" />
-    </form>
+<h1>Car Search Results</h1>
+<form th:action="@{/computers/search}" method="get">
+    <input type="text" name="name" placeholder="Search by name" />
+    <button type="submit">Search</button>
+</form>
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
 </div>
+<table th:if="${!computerList.isEmpty()}" id = "computerList" >
+    <thead>
+    <tr>
+        <th>ComputerCode</th>
+        <th>ComputerName</th>
+        <th>Manufacturer</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${computerList}">
+        <td th:text="${row.getComputerCode()}"></td>
+        <td th:text="${row.getComputerName()}"></td>
+        <td th:if="${row.getManufacturer() != null}" th:text="${row.getManufacturer().getManufacturerName()}"></td>
+<!--        <td th:if="${row.getManufacturer() == null}">Không có kết quả</td>-->
+        <td th:text="${row.getPrice()}"></td>
+        <td th:text="${row.getDescription()}"></td>
+        <td ><img width="100" height="100" th:src="@{'/i/'+${row.getImg()}}" src="" alt="IMG"></td>
+        <td><a th:href="@{/computers/{id}/edit(id=${row.getComputerId()})}">edit</a></td>
+        <td><a th:href="@{/computers/{id}/delete(id=${row.getComputerId()})}">delete</a></td>
+        <td><a th:href="@{/computers/{id}/view(id=${row.getComputerId()})}">view</a></td>
+
+    </tbody>
+</table>
+<div>
+    <a th:if="${computerList.hasPrevious()}"
+       th:href="@{/computers(page=${computerList.number - 1})}">Previous</a>
+    <span th:text="${computerList.number + 1}"></span> / <span th:text="${computerList.totalPages}"></span>
+    <a th:if="${computerList.hasNext()}"
+       th:href="@{/computers(page=${computerList.number + 1})}">Next</a>
+</div>
+<p th:if="${computerList.isEmpty()}">No List</p>
 
 <footer th:replace="/layout :: footer"></footer>
-
 </body>
 </html>

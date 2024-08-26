@@ -2,6 +2,7 @@ package com.example.md4minitest2computer.service.impl;
 
 import com.example.md4minitest2computer.model.Computer;
 import com.example.md4minitest2computer.model.Manufacturer;
+import com.example.md4minitest2computer.repository.IComputerRepository;
 import com.example.md4minitest2computer.service.IComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,41 +15,41 @@ import java.util.Optional;
 public class ComputerService implements IComputerService {
 
     @Autowired
-    private IComputerService iComputerService;
+    private IComputerRepository iComputerRepository;
 
 
     @Override
     public Iterable<Computer> findAll() {
-        return iComputerService.findAll();
+        return iComputerRepository.findAll();
     }
 
     @Override
     public void save(Computer computer) {
-        iComputerService.save(computer);
+        iComputerRepository.save(computer);
     }
 
     @Override
     public Optional<Computer> findById(Long computerId) {
-        return iComputerService.findById(computerId);
+        return iComputerRepository.findById(computerId);
     }
 
     @Override
     public void remove(Long computerId) {
-        iComputerService.remove(computerId);
+        iComputerRepository.deleteById(computerId);
     }
 
     @Override
     public Iterable<Computer> findAllByManufacturer(Manufacturer manufacturer) {
-        return iComputerService.findAllByManufacturer(manufacturer);
+        return iComputerRepository.findAllByManufacturer(manufacturer);
     }
 
     @Override
     public Page<Computer> findAll(Pageable pageable) {
-        return iComputerService.findAll(pageable);
+        return iComputerRepository.findAll(pageable);
     }
 
     @Override
-    public Page<Computer> findAllByNameContaining(Pageable pageable, String name) {
-        return iComputerService.findAllByNameContaining(pageable,name);
+    public Page<Computer> findAllByNameContaining(Pageable pageable, String computerName) {
+        return iComputerRepository.findAllByNameContaining(pageable,computerName);
     }
 }

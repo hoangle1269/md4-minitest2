@@ -13,10 +13,10 @@
 <div id="form">
     <form th:action="@{/manufacturers/create}" th:object="${manufacturer}"
           method="POST" novalidate="novalidate">
-        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{manufacturerId}"/>
         <div>
             <label for="name">Name</label>
-            <input type="text" id="name" th:field="*{name}"/>
+            <input type="text" id="name" th:field="*{manufacturerName}"/>
         </div>
         <input type="submit" value="Save"/>
     </form>

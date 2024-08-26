@@ -18,14 +18,14 @@
 
         <div>
             <label for="name">Name</label>
-            <input type="text" id="name" th:field="*{name}" placeholder="Enter car name" />
+            <input type="text" id="name" th:field="*{computerName}" placeholder="Enter car name" />
         </div>
 
         <div>
             <label for="producer">Producer</label>
             <!--           <input type="text" id="producer" th:field="*{manufacturer}" placeholder="Enter producer name" />-->
             <select id="producer" th:field="*{manufacturer}">
-                <option th:each="m : ${manufacturers}" th:value="${m.id}" th:text="${m.name}"></option>
+                <option th:each="m : ${manufacturers}" th:value="${m.manufacturerId}" th:text="${m.manufacturerName}"></option>
             </select>
         </div>
 
