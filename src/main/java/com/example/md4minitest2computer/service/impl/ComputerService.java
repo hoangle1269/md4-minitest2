@@ -50,6 +50,6 @@ public class ComputerService implements IComputerService {
 
     @Override
     public Page<Computer> findAllByNameContaining(Pageable pageable, String computerName) {
-        return iComputerRepository.findAllByNameContaining(pageable,computerName);
+        return iComputerRepository.findAllByComputerNameContaining(pageable,computerName);
     }
 }
