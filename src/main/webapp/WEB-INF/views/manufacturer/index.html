@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<table id = "manufacturerList">
+<table id = "computerList">
     <thead>
     <tr>
         <th>STT</th>
@@ -38,20 +38,13 @@
     </tr>
     </tbody>
 </table>
-<table id = "">
-    <thead>
-    <tr>
-        <th>name</th>
-        <th>count</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="m, mStatus : ${count}">
-        <td th:text="${m.getManufacturerName()}"></td>
-        <td th:text="${m.getCount()}"></td>
-    </tr>
-    </tbody>
-</table>
+
+<p>
+    <a th:href="@{/manufacturers/demo}">
+        COUNT
+    </a>
+</p><p
+
 <footer th:replace="/layout :: footer"></footer>
 </body>
 </html>

@@ -8,6 +8,8 @@
 <h3>Add new</h3>
 
 <p><a th:href="@{/computers/create}">Add</a></p>
+<p><a th:href="@{/manufacturers}">Manufacturer</a></p>
+
 
 <h1>Car Search Results</h1>
 <form th:action="@{/computers/search}" method="get">
@@ -36,10 +38,10 @@
         <td th:text="${row.getComputerCode()}"></td>
         <td th:text="${row.getComputerName()}"></td>
         <td th:if="${row.getManufacturer() != null}" th:text="${row.getManufacturer().getManufacturerName()}"></td>
-<!--        <td th:if="${row.getManufacturer() == null}">Không có kết quả</td>-->
+        <td th:if="${row.getManufacturer() == null}">N/A</td>
         <td th:text="${row.getPrice()}"></td>
         <td th:text="${row.getDescription()}"></td>
-        <td ><img width="100" height="100" th:src="@{'/i/'+${row.getImg()}}" src="" alt="IMG"></td>
+        <td><img width="100" height="100" th:src="@{'/i/'+${row.getImg()}}" src="" alt="IMG"></td>
         <td><a th:href="@{/computers/{id}/edit(id=${row.getComputerId()})}">edit</a></td>
         <td><a th:href="@{/computers/{id}/delete(id=${row.getComputerId()})}">delete</a></td>
         <td><a th:href="@{/computers/{id}/view(id=${row.getComputerId()})}">view</a></td>
